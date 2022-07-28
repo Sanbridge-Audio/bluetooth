@@ -1,9 +1,3 @@
-FROM debian
-##
-#COPY entrypoint.sh /entrypoint.sh
-
-#ENTRYPOINT ["/entrypoint.sh"]
-
 FROM debian:stable AS depend
 LABEL maintainer="Matt Dickinson <matt.dickinson@outlook.com>"
 
