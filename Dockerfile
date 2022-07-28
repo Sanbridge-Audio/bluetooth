@@ -1,4 +1,4 @@
-FROM debian:stable AS depend
+FROM debian:stable AS build
 LABEL maintainer="Matt Dickinson <matt@sanbridge.org>"
 
 #Installation of all of the dependencies needed to build Music Player Daemon from source.
