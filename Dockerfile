@@ -19,3 +19,4 @@ RUN apt-get update && apt-get install -y \
 #RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 
 #ENTRYPOINT ["/init"]
+CMD bluetoothctl
