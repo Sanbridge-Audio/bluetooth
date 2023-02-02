@@ -1,22 +1,8 @@
-FROM debian:stable AS build
-LABEL maintainer="Matt Dickinson <matt@sanbridge.org>"
-## Website for installing bluetooth.
-##https://computingforgeeks.com/connect-to-bluetooth-device-from-linux-terminal/
+FROM ubuntu:18.04
 
-#Installation of all of the dependencies needed to build Music Player Daemon from source.
-RUN apt-get update && apt-get install -y \
-	nano \
-	bluez \
-	bluetooth \
-	bluez-tools \
-	rfkill \
-	xz-utils
-#ARG S6_OVERLAY_VERSION=3.1.0.1
+RUN apt-get update && apt-get install -y bluez python3-dev python3-pip libbluetooth-dev
+RUN pip3 install pybluez
 
-#ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
-#RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
-#ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
-#RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
+COPY bluetooth.py /root/bluetooth.py
 
-#ENTRYPOINT ["/init"]
-CMD bluetoothctl
+CMD ["python3", "/root/bluetooth.py"]
