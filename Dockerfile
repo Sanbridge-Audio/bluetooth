@@ -1,8 +1,22 @@
-FROM ubuntu:18.04
+FROM python:3.8.3
 
-RUN apt-get update && apt-get install -y bluez python3-dev python3-pip libbluetooth-dev
-RUN pip3 install pybluez
+RUN apt-get update
 
-COPY bluetooth.py /root/bluetooth.py
+RUN apt-get install -y --no-install-recommends libboost-all-dev
+RUN apt-get install -y bluez \
+  bluetooth \
+  pkg-config \
+  libboost-python-dev \
+  libboost-thread-dev \
+  libbluetooth-dev \
+  libglib2.0-dev \
+  python3-dev \
+  libgirepository1.0-dev \
+  gcc \
+  libcairo2-dev \
+  gir1.2-gtk-3.0
 
-CMD ["python3", "/root/bluetooth.py"]
+RUN pip3 install --upgrade pip
+RUN pip3 install pycairo PyGObject dasbus
+
+ENTRYPOINT ["python"] 
